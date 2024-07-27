@@ -2,6 +2,7 @@
 
 import torch
 from os import path
+import os
 dir_script = path.dirname(path.realpath(__file__))
 import sys
 sys.path.append(dir_script+'/../')
@@ -23,7 +24,7 @@ elif args.device is None:
 fh = open(args.output_file, 'w') if args.output_file is not None else sys.stdout
 
 pdbdir = pathlib.Path(args.pdbdir)
-pdbs = list(pdbdir.glob("*pdb"))
+pdbs = [pdbdir/name for name in os.listdir(pdbdir)]
 
 for pdb in tqdm.tqdm(pdbs):
     # read pdb file
