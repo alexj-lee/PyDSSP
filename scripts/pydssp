@@ -30,6 +30,10 @@ for pdb in tqdm.tqdm(pdbs):
     coord = torch.tensor(pydssp.read_pdbtext(open(pdb, 'r').read()))
     coord = coord.to(args.device)
     # main calcuration
-    dsspline = ''.join(pydssp.assign(coord))
+    dsspline = ','.join(pydssp.assign(coord))
+    e = dsspline.count('E')
+    h = dsspline.count('H')
+    dash = dsspline.count('-')
+    tot = e + h + dash
     # write file or STDOUT
-    fh.write(f"{dsspline} {pdb}\n")
+    fh.write(f"{pdb},{dsspline},{e},{h},{dash},{tot}\n")
