@@ -24,7 +24,7 @@ elif args.device is None:
 fh = open(args.output_file, 'w') if args.output_file is not None else sys.stdout
 
 pdbdir = pathlib.Path(args.pdbdir)
-pdbs = [pdbdir/name for name in os.listdir(pdbdir)]
+pdbs = [pdbdir/name for name in os.listdir(pdbdir) if str(name).endswith('pdb')]
 
 for pdb in tqdm.tqdm(pdbs):
     # read pdb file
