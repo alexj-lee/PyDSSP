@@ -36,5 +36,7 @@ for pdb in tqdm.tqdm(pdbs):
     h = dsspline.count('H')
     dash = dsspline.count('-')
     tot = e + h + dash
+    pct_e = e / tot
+    pct_h = h / tot
     # write file or STDOUT
-    fh.write(f"{pdb},{dsspline},{e},{h},{dash},{tot}\n")
+    fh.write(f"{pdb},{dsspline},{e},{h},{dash},{pct_e},{pct_h},{tot}\n")
